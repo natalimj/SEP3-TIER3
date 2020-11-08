@@ -9,9 +9,9 @@ import java.util.ArrayList;
 public interface DataHandler {
 
     public ArrayList<User> getAllUsers();
-    public User getUser(int id);
+    public User getUser(String id);
     public void addUser(User user);
-    public void deleteUser(int id);
+    public void deleteUser(String id);
     public void editUser(User user);
 
     public ArrayList<Hospital> getAllHospitals();

@@ -47,13 +47,13 @@ public class SocketHandler implements Runnable{
                         outToClient.writeObject(new Request("GetAllUsers", dataHandler.getAllUsers()));
                         break;
                     case "GetUser":
-                        outToClient.writeObject(new Request("GetUser", dataHandler.getUser((Integer) request.getArg())));
+                        outToClient.writeObject(new Request("GetUser", dataHandler.getUser((String) request.getArg())));
                         break;
                     case "EditUser":
                         dataHandler.editUser((User) request.getArg());
                         break;
                     case "DeleteUser":
-                        dataHandler.deleteUser((Integer) request.getArg());
+                        dataHandler.deleteUser((String) request.getArg());
                         break;
                     case "getAllHospitals":
                         outToClient.writeObject(new Request("getAllHospitals", dataHandler.getAllHospitals()));

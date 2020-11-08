@@ -31,16 +31,18 @@ public class DatabaseHandler implements DataHandler
         return userData.getAllUsers();
     }
 
-    public User getUser(int id) {
-       return userData.getUser(id);
+    @Override
+    public User getUser(String id) {
+        return userData.getUser(id);
     }
 
     public void addUser(User user) {
         userData.addUser(user);
     }
 
-    public void deleteUser(int id) {
-        userData.deleteUser(id);
+    @Override
+    public void deleteUser(String id) {
+  userData.deleteUser(id);
     }
 
     public void editUser(User user) {

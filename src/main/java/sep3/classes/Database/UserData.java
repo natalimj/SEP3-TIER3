@@ -56,7 +56,7 @@ public class UserData {
     }
 
 
-    public User getUser(int id){
+    public User getUser(String id){
         ArrayList<User> users = new ArrayList<>();
         User user=null;
 
@@ -118,12 +118,12 @@ public class UserData {
         System.out.println("ADDED: "+user.getIdNr());
 
     }
-    public void deleteUser(int id){
+    public void deleteUser(String id){
         String sql = "DELETE FROM USERS WHERE user_id =?";
         PreparedStatement pst = null;
         try {
             pst = connection.prepareStatement(sql);
-            pst.setInt(1,id);
+            pst.setString(1,id);
 
         } catch (SQLException e) {
             e.printStackTrace();
