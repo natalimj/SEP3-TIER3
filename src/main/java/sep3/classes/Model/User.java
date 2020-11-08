@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class User implements Serializable {
 
-    private int idNr;
+    private String idNr;
     private String password;
     private String email;
     private String userType;
@@ -21,7 +21,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(int idNr, String password, String email, String userType, String firstname, String lastname,
+    public User(String idNr, String password, String email, String userType, String firstname, String lastname,
                 String gender, Date birthday, String telNo, String address, boolean validated)
     {
         this.idNr = idNr;
@@ -53,11 +53,11 @@ public class User implements Serializable {
         this.validated = validated;
     }
 
-    public int getIdNr() {
+    public String getIdNr() {
         return idNr;
     }
 
-    public void setIdNr(int idNr) {
+    public void setIdNr(String idNr) {
         this.idNr = idNr;
     }
 

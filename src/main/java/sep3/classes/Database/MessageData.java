@@ -12,7 +12,6 @@ import java.util.TimeZone;
 
 public class MessageData {
     private  DatabaseConnection db;
-    private PreparedStatement pst;
     private Connection connection;
     private static final Calendar utc = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 

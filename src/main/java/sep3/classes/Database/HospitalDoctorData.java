@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class HospitalDoctorData {
 
     private  DatabaseConnection db;
-    private PreparedStatement pst;
     private Connection connection;
 
     public HospitalDoctorData() {

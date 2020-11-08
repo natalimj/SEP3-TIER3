@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class UserData {
 
     private  DatabaseConnection db;
-    private PreparedStatement pst;
     private Connection connection;
 
     public UserData()  {
@@ -34,7 +33,7 @@ public class UserData {
             User user;
             while (rs.next())
             {
-                user = new User(rs.getInt("user_id"),
+                user = new User(rs.getString("user_id"),
                         rs.getString("password"),
                         rs.getString("email"),
                         rs.getString("user_type"),
@@ -69,7 +68,7 @@ public class UserData {
                     .executeQuery("SELECT * FROM USERS WHERE user_id='" + id + "'");
             while (rs.next())
             {
-                user = new User(rs.getInt("user_id"),
+                user = new User(rs.getString("user_id"),
                         rs.getString("password"),
                         rs.getString("email"),
                         rs.getString("user_type"),
@@ -100,7 +99,7 @@ public class UserData {
         PreparedStatement pst= null;
         try {
             pst = connection.prepareStatement(sql);
-            pst.setInt(1,user.getIdNr());
+            pst.setString(1,user.getIdNr());
             pst.setString(2,user.getPassword());
             pst.setString(3,user.getEmail());
             pst.setString(4,user.getUserType());
@@ -149,7 +148,7 @@ public class UserData {
             pst.setString(8,user.getTelNo());
             pst.setString(9,user.getAddress());
             pst.setBoolean(10,user.isValidated());
-            pst.setInt(11,user.getIdNr());
+            pst.setString(11,user.getIdNr());
         } catch (SQLException e) {
             e.printStackTrace();
         }
