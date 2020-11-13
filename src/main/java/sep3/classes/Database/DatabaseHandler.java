@@ -2,7 +2,6 @@ package sep3.classes.Database;
 
 import sep3.classes.Model.*;
 
-
 import java.util.ArrayList;
 
 public class DatabaseHandler implements DataHandler
@@ -12,9 +11,6 @@ public class DatabaseHandler implements DataHandler
     private MedicalRecordData medicalRecordData;
     private RatingData ratingData;
     private MessageData messageData;
-    private AppointmentData appointmentData;
-    private AvailableDayData availableDayData;
-    private HospitalDoctorData hospitalDoctorData;
 
     public DatabaseHandler()  {
            userData = new UserData();
@@ -22,27 +18,22 @@ public class DatabaseHandler implements DataHandler
            medicalRecordData=new MedicalRecordData();
            ratingData=new RatingData();
            messageData=new MessageData();
-           appointmentData=new AppointmentData();
-           availableDayData=new AvailableDayData();
-           hospitalDoctorData=new HospitalDoctorData();
     }
 
     public ArrayList<User> getAllUsers() {
         return userData.getAllUsers();
     }
 
-    @Override
-    public User getUser(String id) {
-        return userData.getUser(id);
+    public User getUser(int id) {
+       return userData.getUser(id);
     }
 
     public void addUser(User user) {
         userData.addUser(user);
     }
 
-    @Override
-    public void deleteUser(String id) {
-  userData.deleteUser(id);
+    public void deleteUser(int id) {
+        userData.deleteUser(id);
     }
 
     public void editUser(User user) {
@@ -118,60 +109,9 @@ public class DatabaseHandler implements DataHandler
     }
 
     @Override
-    public void deleteMessage(Message message) {
-      messageData.deleteMessage(message);
+    public void deleteMessage(int msgId) {
+     messageData.deleteMessage(msgId);
     }
-
-    @Override
-    public ArrayList<Appointment> getAllAppointments() {
-        return appointmentData.getAllAppointments();
-    }
-
-    @Override
-    public void addAppointment(Appointment appointment) {
-      appointmentData.addAppointment(appointment);
-    }
-
-    @Override
-    public void deleteAppointment(Appointment appointment) {
-     appointmentData.deleteAppointment(appointment);
-    }
-
-    @Override
-    public ArrayList<AvailableDay> getAvailableDays(int doctorId) {
-        return availableDayData.getAvailableDays(doctorId);
-    }
-
-    @Override
-    public void addAvailableDay(AvailableDay availableDay) {
-     availableDayData.addAvailableDay(availableDay);
-    }
-
-    @Override
-    public void deleteAvailableDay(AvailableDay availableDay) {
-     availableDayData.deleteAvailableDay(availableDay);
-    }
-
-    @Override
-    public ArrayList<HospitalDoctor> getHospitalDoctor(int doctorId) {
-        return hospitalDoctorData.getHospitalDoctor(doctorId);
-    }
-
-    @Override
-    public void addHospitalDoctor(HospitalDoctor hospitalDoctor) {
-          hospitalDoctorData.addHospitalDoctor(hospitalDoctor);
-    }
-
-    @Override
-    public void deleteHospitalDoctor(HospitalDoctor hospitalDoctor) {
-         hospitalDoctorData.deleteHospitalDoctor(hospitalDoctor);
-    }
-
-    @Override
-    public ArrayList<String> getDepartmentsOfHospital(int hospitalId) {
-        return hospitalDoctorData.getDepartmentsOfHospital(hospitalId);
-    }
-
 
 }
 

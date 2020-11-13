@@ -10,7 +10,7 @@ public class DatabaseConnection {
     private Connection connection;
     private String url = "jdbc:postgresql://localhost/SEP3";
     private String username = "postgres";
-    private String password = "123456";
+    private String password = "134679Da";
 
     private DatabaseConnection() throws SQLException
     {

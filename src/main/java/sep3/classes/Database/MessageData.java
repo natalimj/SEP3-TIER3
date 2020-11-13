@@ -12,6 +12,7 @@ import java.util.TimeZone;
 
 public class MessageData {
     private  DatabaseConnection db;
+    private PreparedStatement pst;
     private Connection connection;
     private static final Calendar utc = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 
@@ -42,7 +43,8 @@ public class MessageData {
                 if (ts != null)
                     localDt = LocalDateTime.ofInstant(Instant.ofEpochMilli(ts.getTime()), ZoneOffset.UTC);
 
-                message = new Message( rs.getInt("sender_id"),
+                message = new Message(rs.getInt("message_id"),
+                        rs.getInt("sender_id"),
                         rs.getInt("receiver_id"),
                         localDt,
                         rs.getString("message_type"),
@@ -77,7 +79,7 @@ public class MessageData {
                 if (ts != null)
                     localDt = LocalDateTime.ofInstant(Instant.ofEpochMilli(ts.getTime()), ZoneOffset.UTC);
 
-                message = new Message(
+                message = new Message(rs.getInt("message_id"),
                         rs.getInt("sender_id"),
                         rs.getInt("receiver_id"),
                         localDt,
@@ -114,26 +116,21 @@ public class MessageData {
         }
 
         db.operation(pst);
-        System.out.println("ADDED: "+message.getTimestamp());
+        System.out.println("ADDED: "+message.getMessageId());
     }
 
-    public void deleteMessage(Message message){
-        String sql = "DELETE FROM MESSAGES WHERE sender_id =? AND receiver_id=? AND time_sent=?";
+    public void deleteMessage(int msgId){
+        String sql = "DELETE FROM MESSAGES WHERE message_id =?";
         PreparedStatement pst = null;
         try {
             pst = connection.prepareStatement(sql);
-            pst.setInt(1,message.getSenderId());
-            pst.setInt(2,message.getReceiverId());
-            Timestamp ts = new Timestamp(message.getTimestamp().toInstant(ZoneOffset.UTC).toEpochMilli());
-            pst.setTimestamp(3,ts,utc);
-
-
+            pst.setInt(1,msgId);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
         db.operation(pst);
-        System.out.println("DELETED : msg" );
+        System.out.println("DELETED msg id:"+msgId );
     }
 
 }

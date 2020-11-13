@@ -14,9 +14,6 @@ public class Hospital implements Serializable {
     private boolean validated;
     private String info;
 
-    public Hospital() {
-    }
-
     public Hospital(int id, String type, String name, int postalCode, String address, int managerId, double avgRating, boolean validated, String info) {
         this.id = id;
         this.type = type;

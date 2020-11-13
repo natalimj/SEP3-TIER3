@@ -6,9 +6,6 @@ public class Rating {
     private int idNr;
     private int hospitalId;
 
-    public Rating() {
-    }
-
     public Rating(int rating, int idNr, int hospitalId) {
         this.rating = rating;
         this.idNr = idNr;

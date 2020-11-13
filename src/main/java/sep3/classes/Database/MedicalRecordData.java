@@ -1,7 +1,7 @@
 package sep3.classes.Database;
 
 import sep3.classes.Model.MedicalRecord;
-
+import sep3.classes.Model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,6 +10,7 @@ public class MedicalRecordData {
 
 
     private  DatabaseConnection db;
+    private PreparedStatement pst;
     private Connection connection;
 
     public MedicalRecordData()  {
