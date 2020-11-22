@@ -90,7 +90,6 @@ public class UserData {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        System.out.println("Returning...");
         return user;
     }
 
@@ -108,7 +107,7 @@ public class UserData {
             pst.setString(5,user.getFirstname());
             pst.setString(6,user.getLastname());
             pst.setString(7,user.getGender());
-            pst.setDate(8,user.getBirthday());
+            pst.setDate(8, (Date) user.getBirthday());
             pst.setString(9,user.getTelNo());
             pst.setString(10,user.getAddress());
             pst.setBoolean(11,user.isValidated());
@@ -146,7 +145,7 @@ public class UserData {
             pst.setString(4,user.getFirstname());
             pst.setString(5,user.getLastname());
             pst.setString(6,user.getGender());
-            pst.setDate(7,user.getBirthday());
+            pst.setDate(7, (Date) user.getBirthday());
             pst.setString(8,user.getTelNo());
             pst.setString(9,user.getAddress());
             pst.setBoolean(10,user.isValidated());

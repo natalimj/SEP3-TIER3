@@ -6,6 +6,9 @@ public class Request implements Serializable {
     private String type;
     private Object arg;
 
+    public Request() {
+    }
+
     public Request(String type, Object arg) {
         this.type = type;
         this.arg = arg;

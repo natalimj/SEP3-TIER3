@@ -3,6 +3,7 @@ package sep3.classes.Database;
 
 import sep3.classes.Model.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public interface DataHandler {
@@ -36,11 +37,19 @@ public interface DataHandler {
     public ArrayList<Message> getAllMessages();
     public ArrayList<Message> getUserMessages(int userId);
     public void addMessage(Message message);  //send message
-    public void deleteMessage(int msgId);
+    public void deleteMessage(Message message);
 
-    //public ArrayList<Appointment> getAllAppointments();
+    public ArrayList<Appointment> getAllAppointments();
     //public User getAppointment(int doctorId);
-    //public void addAppointment(Appointment appointment);
-    //public void deleteAppointment(Appointment appointment);
-    //public void editAppointment(Appointment appointment);
+    public void addAppointment(Appointment appointment);
+    public void deleteAppointment(Appointment appointment);
+
+    public ArrayList<AvailableDay> getAvailableDays(int doctorId);
+    public void addAvailableDay(AvailableDay availableDay);
+    public void deleteAvailableDay(AvailableDay availableDay);
+
+    public ArrayList<HospitalDoctor> getHospitalDoctor(int doctorId);
+    public void addHospitalDoctor(HospitalDoctor hospitalDoctor);
+    public void deleteHospitalDoctor(HospitalDoctor hospitalDoctor);
+    public ArrayList<String> getDepartmentsOfHospital(int hospitalId);
 }

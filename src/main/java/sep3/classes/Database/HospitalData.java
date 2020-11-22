@@ -19,8 +19,6 @@ public class HospitalData {
         connection = db.getConnection();
     }
 
-
-
     public ArrayList<Hospital> getAllHospitals(){
         ArrayList<Hospital> hospitals =new ArrayList<>();
         try
@@ -88,27 +86,30 @@ public class HospitalData {
         return hospital;
 
     }
+
     public void addHospital(Hospital hospital){
 
         String sql ="INSERT INTO HOSPITALS (name,address,post_code,info,avg_rating,type,manager_id,validated) " +
-                "VALUES (?,?,?,?,?,?,?);";
+                "VALUES (?,?,?,?,?,?,?,?);";
         PreparedStatement pst= null;
         try {
             pst = connection.prepareStatement(sql);
             pst.setString(1,hospital.getName());
-            pst.setString(2,hospital.getInfo());
-            pst.setDouble(3,hospital.getAvgRating());
-            pst.setString(4, hospital.getType());
-            pst.setInt(5,hospital.getManagerId());
-            pst.setBoolean(6,hospital.getValidated());
-            pst.setInt(7,hospital.getPostalCode());
+            pst.setString(2,hospital.getAddress());
+            pst.setInt(3,hospital.getPostalCode());
+            pst.setString(4,hospital.getInfo());
+            pst.setDouble(5,hospital.getAvgRating());
+            pst.setString(6, hospital.getType());
+            pst.setInt(7,hospital.getManagerId());
+            pst.setBoolean(8,hospital.getValidated());
+
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
 
         db.operation(pst);
-        System.out.println("ADDED: "+hospital.getId());
+        System.out.println("ADDED: hospital");
 
     }
 

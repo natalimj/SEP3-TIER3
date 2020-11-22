@@ -1,5 +1,6 @@
 package sep3.classes.Model;
 
+
 import java.util.Date;
 
 public class Appointment {
@@ -8,6 +9,9 @@ public class Appointment {
     private int doctorId;
     private Date appointmentTime;
     private Date appointmentDate;
+
+    public Appointment() {
+    }
 
     public Appointment(int patientId, int doctorId, Date appointmentTime, Date appointmentDate) {
         this.patientId = patientId;

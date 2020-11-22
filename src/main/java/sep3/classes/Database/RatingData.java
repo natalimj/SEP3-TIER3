@@ -1,7 +1,6 @@
 package sep3.classes.Database;
 
 import sep3.classes.Model.Rating;
-import sep3.classes.Model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -51,7 +50,7 @@ public class RatingData {
 
     public void addRating(Rating rating)
     {
-        String sql ="INSERT INTO RATES (hospital_id,user_id,rating) VALUES (?,?,?,);";
+        String sql ="INSERT INTO RATES (hospital_id,user_id,rating) VALUES (?,?,?);";
         PreparedStatement pst= null;
         try {
             pst = connection.prepareStatement(sql);

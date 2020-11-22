@@ -3,9 +3,10 @@ package sep3.classes.Model;
 public class MedicalRecord {
 
     private int patientId;
-    //maybe string buffer for now(can parse the byte[] to this)
-    //private StringBuffer content;
     private byte[] content;
+
+    public MedicalRecord() {
+    }
 
     public MedicalRecord(int patientId, byte[] content) {
         this.patientId = patientId;
