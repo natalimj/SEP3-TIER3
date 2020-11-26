@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class UserData {
 
     private  DatabaseConnection db;
-    private PreparedStatement pst;
     private Connection connection;
 
     public UserData()  {
@@ -44,7 +43,8 @@ public class UserData {
                         rs.getDate("birthday"),
                         rs.getString("tel_no"),
                         rs.getString("address"),
-                        rs.getBoolean("validated"));
+                        rs.getBoolean("validated"),
+                        rs.getBytes("image"));
                 users.add(user);
             }
         }
@@ -79,7 +79,8 @@ public class UserData {
                         rs.getDate("birthday"),
                         rs.getString("tel_no"),
                         rs.getString("address"),
-                        rs.getBoolean("validated"));
+                        rs.getBoolean("validated"),
+                        rs.getBytes("image"));
 
                 users.add(user);
                 user=users.get(0);
@@ -96,7 +97,7 @@ public class UserData {
     public void addUser(User user)
     {
         String sql ="INSERT INTO USERS (user_id,password,email,user_type,firstname,lastname,gender,birthday,tel_no,address,validated) " +
-                "VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
         PreparedStatement pst= null;
         try {
             pst = connection.prepareStatement(sql);
@@ -111,6 +112,7 @@ public class UserData {
             pst.setString(9,user.getTelNo());
             pst.setString(10,user.getAddress());
             pst.setBoolean(11,user.isValidated());
+            pst.setBytes(12, user.getImage());
         } catch (SQLException e) {
             e.printStackTrace();
         }

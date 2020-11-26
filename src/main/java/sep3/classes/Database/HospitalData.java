@@ -1,13 +1,11 @@
 package sep3.classes.Database;
 import sep3.classes.Model.Hospital;
-import sep3.classes.Model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class HospitalData {
     private  DatabaseConnection db;
-    private PreparedStatement pst;
     private Connection connection;
 
     public HospitalData() {
@@ -40,7 +38,8 @@ public class HospitalData {
                         rs.getInt("manager_id"),
                         rs.getDouble("avg_rating"),
                         rs.getBoolean("validated"),
-                        rs.getString("info"));
+                        rs.getString("info"),
+                        rs.getBytes("image"));
                 hospitals.add(hospital);
             }
         }
@@ -73,7 +72,8 @@ public class HospitalData {
                         rs.getInt("manager_id"),
                         rs.getDouble("avg_rating"),
                         rs.getBoolean("validated"),
-                        rs.getString("info"));
+                        rs.getString("info"),
+                        rs.getBytes("image"));
                 hospitals.add(hospital);
                 hospital=hospitals.get(0);
             }
@@ -89,8 +89,8 @@ public class HospitalData {
 
     public void addHospital(Hospital hospital){
 
-        String sql ="INSERT INTO HOSPITALS (name,address,post_code,info,avg_rating,type,manager_id,validated) " +
-                "VALUES (?,?,?,?,?,?,?,?);";
+        String sql ="INSERT INTO HOSPITALS (name,address,post_code,info,avg_rating,type,manager_id,validated,image) " +
+                "VALUES (?,?,?,?,?,?,?,?,?);";
         PreparedStatement pst= null;
         try {
             pst = connection.prepareStatement(sql);
@@ -102,6 +102,8 @@ public class HospitalData {
             pst.setString(6, hospital.getType());
             pst.setInt(7,hospital.getManagerId());
             pst.setBoolean(8,hospital.getValidated());
+            pst.setBytes(9, hospital.getImage());
+
 
         }
         catch (SQLException e) {

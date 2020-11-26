@@ -17,13 +17,15 @@ public class User implements Serializable {
     private String telNo;
     private String address;
     private boolean validated;
+    private byte[] image;
 
     public User() {
     }
 
-    public User(int idNr, String password, String email, String userType, String firstname, String lastname,
-                String gender, Date birthday, String telNo, String address, boolean validated)
-    {
+
+    public User(int idNr, String password, String email, String userType, String firstname,
+                String lastname, String gender, Date birthday, String telNo, String address,
+                boolean validated, byte[] image) {
         this.idNr = idNr;
         this.password = password;
         this.email = email;
@@ -35,10 +37,12 @@ public class User implements Serializable {
         this.telNo = telNo;
         this.address = address;
         this.validated = validated;
+        this.image = image;
     }
 
-    public User( String password, String email, String userType, String firstname,
-                 String lastname, String gender, Date birthday, String telNo, String address, boolean validated)
+    public User(String password, String email, String userType, String firstname,
+                String lastname, String gender, Date birthday, String telNo, String address,
+                boolean validated,byte[] image)
     {
 
         this.password = password;
@@ -51,6 +55,7 @@ public class User implements Serializable {
         this.telNo = telNo;
         this.address = address;
         this.validated = validated;
+        this.image = image;
     }
 
     public int getIdNr() {
@@ -140,6 +145,14 @@ public class User implements Serializable {
 
     public void setValidated(boolean validated) {
         this.validated = validated;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     @Override

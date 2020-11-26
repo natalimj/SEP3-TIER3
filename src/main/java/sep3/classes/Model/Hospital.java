@@ -13,11 +13,13 @@ public class Hospital implements Serializable {
     private double avgRating;
     private boolean validated;
     private String info;
+    private byte[] image;
 
     public Hospital() {
     }
 
-    public Hospital(int id, String type, String name, int postalCode, String address, int managerId, double avgRating, boolean validated, String info) {
+    public Hospital(int id, String type, String name, int postalCode, String address, int managerId,
+                    double avgRating, boolean validated, String info,byte[] image) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -27,9 +29,11 @@ public class Hospital implements Serializable {
         this.avgRating = avgRating;
         this.validated = validated;
         this.info = info;
+        this.image = image;
     }
 
-    public Hospital(String type, String name, int postalCode, String address, int managerId, double avgRating, boolean validated, String info) {
+    public Hospital(String type, String name, int postalCode, String address, int managerId,
+                    double avgRating, boolean validated, String info,byte[] image) {
         this.type = type;
         this.name = name;
         this.postalCode = postalCode;
@@ -38,6 +42,7 @@ public class Hospital implements Serializable {
         this.avgRating = avgRating;
         this.validated = validated;
         this.info = info;
+        this.image = image;
     }
 
     public int getId() {
@@ -110,6 +115,14 @@ public class Hospital implements Serializable {
 
     public void setInfo(String info) {
         this.info = info;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     @Override
