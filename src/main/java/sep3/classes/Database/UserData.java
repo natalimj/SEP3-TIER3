@@ -96,7 +96,7 @@ public class UserData {
 
     public void addUser(User user)
     {
-        String sql ="INSERT INTO USERS (user_id,password,email,user_type,firstname,lastname,gender,birthday,tel_no,address,validated) " +
+        String sql ="INSERT INTO USERS (user_id,password,email,user_type,firstname,lastname,gender,birthday,tel_no,address,validated,image) " +
                 "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
         PreparedStatement pst= null;
         try {
@@ -108,7 +108,7 @@ public class UserData {
             pst.setString(5,user.getFirstname());
             pst.setString(6,user.getLastname());
             pst.setString(7,user.getGender());
-            pst.setDate(8, (Date) user.getBirthday());
+            pst.setDate(8, new Date(user.getBirthday().getTime()));
             pst.setString(9,user.getTelNo());
             pst.setString(10,user.getAddress());
             pst.setBoolean(11,user.isValidated());
@@ -136,7 +136,7 @@ public class UserData {
     }
     public void editUser(User user){
         String sql = "UPDATE USERS SET password=?,email=?,user_type=?,firstname=?,lastname=?,gender=?,birthday=?,tel_no=?," +
-                "address=?,validated=?  WHERE user_id=?";
+                "address=?,validated=?, image=? WHERE user_id=?";
 
         PreparedStatement pst = null;
         try {
@@ -147,7 +147,7 @@ public class UserData {
             pst.setString(4,user.getFirstname());
             pst.setString(5,user.getLastname());
             pst.setString(6,user.getGender());
-            pst.setDate(7, (Date) user.getBirthday());
+            pst.setDate(7, new Date(user.getBirthday().getTime()));
             pst.setString(8,user.getTelNo());
             pst.setString(9,user.getAddress());
             pst.setBoolean(10,user.isValidated());

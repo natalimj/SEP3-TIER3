@@ -62,9 +62,9 @@ public class AvailableDayData {
 
             pst = connection.prepareStatement(sql);
             pst.setInt(1,availableDay.getDoctorId());
-            pst.setDate(2, (Date) availableDay.getAvailableDate());
-            pst.setDate(3, (Date) availableDay.getStartTime());
-            pst.setDate(4, (Date) availableDay.getEndTime());
+            pst.setDate(2, new Date(availableDay.getAvailableDate().getTime()));
+            pst.setDate(3, new Date(availableDay.getStartTime().getTime()) );
+            pst.setDate(4, new Date(availableDay.getEndTime().getTime()) );
             pst.setInt(5,availableDay.getAppointmentNr());
 
 
@@ -82,7 +82,7 @@ public class AvailableDayData {
         try {
             pst = connection.prepareStatement(sql);
             pst.setInt(1,availableDay.getDoctorId());
-            pst.setDate(2, (Date) availableDay.getAvailableDate());
+            pst.setDate(2, new Date(availableDay.getAvailableDate().getTime()));
 
 
         } catch (SQLException e) {

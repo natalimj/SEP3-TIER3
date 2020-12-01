@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class AppointmentData {
     private  DatabaseConnection db;
-    private PreparedStatement pst;
     private Connection connection;
 
     public AppointmentData()  {
@@ -63,8 +62,8 @@ public class AppointmentData {
             pst = connection.prepareStatement(sql);
             pst.setInt(1,appointment.getPatientId());
             pst.setInt(2,appointment.getDoctorId());
-            pst.setDate(3, (java.sql.Date) appointment.getAppointmentTime());
-            pst.setDate(4, (java.sql.Date) appointment.getAppointmentDate());
+            pst.setDate(3,new Date(appointment.getAppointmentTime().getTime()) );
+            pst.setDate(4,new Date(appointment.getAppointmentDate().getTime()));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -79,8 +78,8 @@ public class AppointmentData {
             pst = connection.prepareStatement(sql);
             pst.setInt(1,appointment.getPatientId());
             pst.setInt(2,appointment.getDoctorId());
-            pst.setDate(3, (Date) appointment.getAppointmentTime());
-            pst.setDate(4, (java.sql.Date) appointment.getAppointmentDate());
+            pst.setDate(3,new Date(appointment.getAppointmentTime().getTime()) );
+            pst.setDate(4,new Date(appointment.getAppointmentDate().getTime()) );
 
         } catch (SQLException e) {
             e.printStackTrace();
