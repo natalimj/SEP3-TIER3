@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class AvailableDayData {
     private  DatabaseConnection db;
-    private PreparedStatement pst;
     private Connection connection;
 
     public AvailableDayData() {

@@ -2,8 +2,6 @@ package sep3.classes.Database;
 
 
 import sep3.classes.Model.*;
-
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public interface DataHandler {
@@ -18,7 +16,7 @@ public interface DataHandler {
     public Hospital getHospital(int id);
     public void addHospital(Hospital hospital);
     public void deleteHospital(int id);
- //   public void editHospital(Hospital hospital);
+    public void editHospital(Hospital hospital);
 
 
    // public ArrayList<MedicalRecord> getAllMedicalRecordData();

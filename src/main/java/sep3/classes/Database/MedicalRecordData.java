@@ -10,7 +10,6 @@ public class MedicalRecordData {
 
 
     private  DatabaseConnection db;
-    private PreparedStatement pst;
     private Connection connection;
 
     public MedicalRecordData()  {

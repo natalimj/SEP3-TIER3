@@ -1,5 +1,6 @@
 package sep3.classes.Database;
 import sep3.classes.Model.Hospital;
+import sep3.classes.Model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -126,6 +127,34 @@ public class HospitalData {
         }
         db.operation(pst);
         System.out.println("DELETED : hospital" );
+    }
+
+    public void editHospital(Hospital hospital){
+
+        String sql= "UPDATE HOSPITALS SET name=?, address=?,post_code=?,info=?,avg_rating=?,type=?,manager_id=?,validated=?,image=? WHERE hospital_id=?";
+
+        PreparedStatement pst = null;
+        try {
+
+            pst = connection.prepareStatement(sql);
+            pst.setString(1,hospital.getName());
+            pst.setString(2,hospital.getAddress());
+            pst.setInt(3,hospital.getPostalCode());
+            pst.setString(4,hospital.getInfo());
+            pst.setDouble(5,hospital.getAvgRating());
+            pst.setString(6, hospital.getType());
+            pst.setInt(7,hospital.getManagerId());
+            pst.setBoolean(8,hospital.getValidated());
+            pst.setBytes(9, hospital.getImage());
+            pst.setInt(10,hospital.getId());
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        db.operation(pst);
+        System.out.println("EDITED: "+ hospital.getId());
     }
 
 }

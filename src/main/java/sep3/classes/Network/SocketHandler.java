@@ -67,6 +67,9 @@ public class SocketHandler implements Runnable{
                     case "deleteHospital":
                         dataHandler.deleteHospital((Integer) request.getArg());
                         break;
+                    case "editHospital":
+                        dataHandler.editHospital((Hospital) request.getArg());
+                        break;
                     case "getMedicalRecord":
                         outToClient.writeObject(new Request("getMedicalRecord", dataHandler.getMedicalRecord((Integer) request.getArg())));
                         break;
