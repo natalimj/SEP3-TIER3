@@ -58,7 +58,7 @@ public class HospitalData {
             Statement statement = connection.createStatement();
             connection.commit();
 
-            ResultSet rs = statement.executeQuery("SELECT * FROM HOSPITALS WHERE hospital_id='\" + id + \"'\"");
+            ResultSet rs = statement.executeQuery("SELECT * FROM HOSPITALS WHERE hospital_id='" + id + "'" );
 
 
             while (rs.next())
@@ -113,6 +113,19 @@ public class HospitalData {
         db.operation(pst);
         System.out.println("ADDED: hospital");
 
+    }
+    public void deleteHospital(int id){
+        String sql = "DELETE FROM HOSPITALS WHERE hospital_id =?";
+        PreparedStatement pst = null;
+        try {
+            pst = connection.prepareStatement(sql);
+            pst.setInt(1,id);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        db.operation(pst);
+        System.out.println("DELETED : hospital" );
     }
 
 }

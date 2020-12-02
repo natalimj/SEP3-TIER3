@@ -17,7 +17,7 @@ public interface DataHandler {
     public ArrayList<Hospital> getAllHospitals();
     public Hospital getHospital(int id);
     public void addHospital(Hospital hospital);
- //   public void deleteHospital(int id);
+    public void deleteHospital(int id);
  //   public void editHospital(Hospital hospital);
 
 

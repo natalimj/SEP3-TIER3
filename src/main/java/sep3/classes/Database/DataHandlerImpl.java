@@ -63,6 +63,11 @@ public class DataHandlerImpl implements DataHandler
     }
 
     @Override
+    public void deleteHospital(int id) {
+        hospitalData.deleteHospital(id);
+    }
+
+    @Override
     public MedicalRecord getMedicalRecord(int id) {
         return medicalRecordData.getMedicalRecord(id);
     }
