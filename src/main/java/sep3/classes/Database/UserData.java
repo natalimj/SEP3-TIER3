@@ -151,7 +151,9 @@ public class UserData {
             pst.setString(8,user.getTelNo());
             pst.setString(9,user.getAddress());
             pst.setBoolean(10,user.isValidated());
-            pst.setInt(11,user.getIdNr());
+            pst.setBytes(11, user.getImage());
+            pst.setInt(12,user.getIdNr());
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

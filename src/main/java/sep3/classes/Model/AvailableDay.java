@@ -1,8 +1,9 @@
 package sep3.classes.Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class AvailableDay {
+public class AvailableDay implements Serializable {
     private int doctorId;
     private Date availableDate;
     private Date startTime;

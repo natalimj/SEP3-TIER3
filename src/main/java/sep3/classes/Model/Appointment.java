@@ -1,23 +1,25 @@
 package sep3.classes.Model;
 
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Appointment {
-
+public class Appointment implements Serializable {
     private int patientId;
     private int doctorId;
     private Date appointmentTime;
     private Date appointmentDate;
+    private String summary;
 
     public Appointment() {
     }
 
-    public Appointment(int patientId, int doctorId, Date appointmentTime, Date appointmentDate) {
+    public Appointment(int patientId, int doctorId, Date appointmentTime, Date appointmentDate, String summary) {
         this.patientId = patientId;
         this.doctorId = doctorId;
         this.appointmentTime = appointmentTime;
         this.appointmentDate = appointmentDate;
+        this.summary = summary;
     }
 
     public int getPatientId() {
@@ -50,6 +52,14 @@ public class Appointment {
 
     public void setAppointmentDate(Date appointmentDate) {
         this.appointmentDate = appointmentDate;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 }
 

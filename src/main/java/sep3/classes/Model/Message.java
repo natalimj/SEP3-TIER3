@@ -1,8 +1,9 @@
 package sep3.classes.Model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Message {
+public class Message  implements Serializable {
 
 
     private int senderId;

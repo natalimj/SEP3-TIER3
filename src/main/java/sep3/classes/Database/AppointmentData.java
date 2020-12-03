@@ -38,7 +38,8 @@ public class AppointmentData {
                 appointment = new Appointment(rs.getInt("patient_id"),
                         rs.getInt("doctor_id"),
                         rs.getDate("appointment_time"),
-                        rs.getDate("appointment_date"));
+                        rs.getDate("appointment_date"),
+                        rs.getString("summary"));
 
                 appointments.add(appointment);
 
@@ -56,7 +57,7 @@ public class AppointmentData {
 
     public void addAppointment(Appointment appointment){
 
-        String sql ="INSERT INTO APPOINTMENTS (patient_id,doctor_id,appointment_time,appointment_date) VALUES (?,?,?,?);";
+        String sql ="INSERT INTO APPOINTMENTS (patient_id,doctor_id,appointment_time,appointment_date,summary) VALUES (?,?,?,?,?);";
         PreparedStatement pst= null;
         try {
             pst = connection.prepareStatement(sql);
@@ -64,6 +65,7 @@ public class AppointmentData {
             pst.setInt(2,appointment.getDoctorId());
             pst.setDate(3,new Date(appointment.getAppointmentTime().getTime()) );
             pst.setDate(4,new Date(appointment.getAppointmentDate().getTime()));
+            pst.setString(5, appointment.getSummary());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -89,3 +91,4 @@ public class AppointmentData {
     }
 
 }
+

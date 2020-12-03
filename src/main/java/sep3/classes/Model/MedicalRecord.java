@@ -1,6 +1,8 @@
 package sep3.classes.Model;
 
-public class MedicalRecord {
+import java.io.Serializable;
+
+public class MedicalRecord implements Serializable {
 
     private int patientId;
     private byte[] content;

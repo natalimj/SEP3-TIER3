@@ -1,6 +1,8 @@
 package sep3.classes.Model;
 
-public class Rating {
+import java.io.Serializable;
+
+public class Rating implements Serializable {
 
     private int rating;
     private int idNr;
