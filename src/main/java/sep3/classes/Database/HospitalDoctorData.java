@@ -115,7 +115,7 @@ public class HospitalDoctorData {
             Statement statement = connection.createStatement();
             connection.commit();
 
-            ResultSet rs = statement.executeQuery("SELECT doctor_id FROM HOSPITALDOCTOR WHERE hospital_name='" + hospitalName + "'AND department_name='" + departmentName + "'");
+            ResultSet rs = statement.executeQuery("SELECT doctor_id FROM HOSPITALDOCTOR WHERE hospital_id='" + hospitalName + "'AND department_name='" + departmentName + "'");
 
             int doctorId;
             while (rs.next()) {
