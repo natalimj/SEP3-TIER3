@@ -50,4 +50,5 @@ public interface DataHandler {
     public void addHospitalDoctor(HospitalDoctor hospitalDoctor);
     public void deleteHospitalDoctor(HospitalDoctor hospitalDoctor);
     public ArrayList<String> getDepartmentsOfHospital(int hospitalId);
+    public ArrayList<Integer> getAllDoctorForDept(String hospitalName,String departmentName);
 }

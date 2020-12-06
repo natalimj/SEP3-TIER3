@@ -106,4 +106,30 @@ public class HospitalDoctorData {
         }
         return departments;
     }
+
+    public ArrayList<Integer> getAllDoctorForDept(String hospitalName,String departmentName) {
+
+        ArrayList<Integer> doctorIdList = new ArrayList<>();
+
+        try {
+            Statement statement = connection.createStatement();
+            connection.commit();
+
+            ResultSet rs = statement.executeQuery("SELECT doctor_id FROM HOSPITALDOCTOR WHERE hospital_name='" + hospitalName + "'AND department_name='" + departmentName + "'");
+
+            int doctorId;
+            while (rs.next()) {
+                doctorId = rs.getInt("hospital_id");
+
+                doctorIdList.add(doctorId);
+
+            }
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        return doctorIdList;
+    }
+
+
 }

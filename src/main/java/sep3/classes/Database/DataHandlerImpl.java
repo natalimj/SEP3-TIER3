@@ -180,6 +180,11 @@ public class DataHandlerImpl implements DataHandler
         return hospitalDoctorData.getDepartmentsOfHospital(hospitalId);
     }
 
+    @Override
+    public ArrayList<Integer> getAllDoctorForDept(String hospitalName, String departmentName) {
+        return hospitalDoctorData.getAllDoctorForDept(hospitalName, departmentName);
+    }
+
 
 }
 

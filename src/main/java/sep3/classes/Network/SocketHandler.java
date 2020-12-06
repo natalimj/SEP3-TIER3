@@ -133,6 +133,13 @@ public class SocketHandler implements Runnable{
                     case "getDepartmentsOfHospital":
                         outToClient.writeObject(new Request("getDepartmentsOfHospital", dataHandler.getDepartmentsOfHospital((Integer) request.getArg())));
                         break;
+                    case "getAllDoctorForDept":
+                        String requestString= (String) request.getArg();
+                        String[] hospitalDepartment = requestString.split(" ");
+                        String hospital = hospitalDepartment[0];
+                        String department = hospitalDepartment[1];
+                        outToClient.writeObject(new Request("getAllDoctorForDept", dataHandler.getAllDoctorForDept(hospital,department)));
+                        break;
 
         }
 
