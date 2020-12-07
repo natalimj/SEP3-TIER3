@@ -2,23 +2,23 @@ package sep3.classes.Model;
 
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Appointment implements Serializable {
     private int patientId;
     private int doctorId;
-    private Date appointmentTime;
-    private Date appointmentDate;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private String summary;
 
     public Appointment() {
     }
 
-    public Appointment(int patientId, int doctorId, Date appointmentTime, Date appointmentDate, String summary) {
+    public Appointment(int patientId, int doctorId, LocalDateTime startTime, LocalDateTime endTime, String summary) {
         this.patientId = patientId;
         this.doctorId = doctorId;
-        this.appointmentTime = appointmentTime;
-        this.appointmentDate = appointmentDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.summary = summary;
     }
 
@@ -38,20 +38,20 @@ public class Appointment implements Serializable {
         this.doctorId = doctorId;
     }
 
-    public Date getAppointmentTime() {
-        return appointmentTime;
+    public LocalDateTime getStartTime() {
+        return startTime;
     }
 
-    public void setAppointmentTime(Date appointmentTime) {
-        this.appointmentTime = appointmentTime;
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
     }
 
-    public Date getAppointmentDate() {
-        return appointmentDate;
+    public LocalDateTime getEndTime() {
+        return endTime;
     }
 
-    public void setAppointmentDate(Date appointmentDate) {
-        this.appointmentDate = appointmentDate;
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
     }
 
     public String getSummary() {

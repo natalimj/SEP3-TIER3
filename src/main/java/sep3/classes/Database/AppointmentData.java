@@ -28,8 +28,6 @@ public class AppointmentData {
     }
 
     public ArrayList<Appointment> getAllAppointments(){
-
-
         ArrayList<Appointment> appointments =new ArrayList<>();
         try
         {
@@ -42,19 +40,23 @@ public class AppointmentData {
             Appointment appointment;
             while (rs.next())
             {
-                Timestamp ts = rs.getTimestamp("appointment_time", utc);
-
-                LocalDateTime localDt = null;
+                Timestamp ts = rs.getTimestamp("startTime",utc);
+                //System.out.println(ts.toString());
+                LocalDateTime start = null;
                 if (ts != null)
-                    localDt = LocalDateTime.ofInstant(Instant.ofEpochMilli(ts.getTime()), ZoneOffset.UTC);
-                //System.out.println(localDt.toString());
-                java.util.Date date = java.util.Date.from(localDt.toInstant(ZoneOffset.UTC));
-                //System.out.println(date.toString());
+                    start = LocalDateTime.ofInstant(Instant.ofEpochMilli(ts.getTime()), ZoneOffset.UTC);
+                //System.out.println(start.toString());
+
+                Timestamp ts2 = rs.getTimestamp("endTime",utc);
+                //System.out.println(ts2);
+                LocalDateTime end = null;
+                if(ts2!=null)
+                   end = LocalDateTime.ofInstant(Instant.ofEpochMilli(ts2.getTime()),ZoneOffset.UTC);
 
                 appointment = new Appointment(rs.getInt("patient_id"),
                         rs.getInt("doctor_id"),
-                        date,
-                        rs.getDate("appointment_date"),
+                        start,
+                        end,
                         rs.getString("summary"));
 
                 appointments.add(appointment);
@@ -67,43 +69,49 @@ public class AppointmentData {
             System.exit(0);
         }
         return appointments;
-
-
     }
 
     public void addAppointment(Appointment appointment){
 
-        java.util.Date in = appointment.getAppointmentTime();
-        /*LocalDateTime ldt = LocalDateTime.ofInstant(in.toInstant(), ZoneId.systemDefault());
-        System.out.println(ldt.toString());*/
-        Timestamp ts = new Timestamp(in.toInstant().toEpochMilli());
-        //System.out.println(ts.toString());
+        Timestamp ts = new Timestamp(appointment.getStartTime().toInstant(ZoneOffset.UTC).toEpochMilli());
+        System.out.println(ts.toString());
+        Timestamp ts2 = new Timestamp(appointment.getEndTime().toInstant(ZoneOffset.UTC).toEpochMilli());
+        System.out.println(ts2.toString());
 
-        String sql ="INSERT INTO APPOINTMENTS (patient_id,doctor_id,appointment_time,appointment_date,summary) VALUES (?,?,?,?,?);";
+        String sql ="INSERT INTO appointments VALUES (?,?,?,?,?);";
         PreparedStatement pst= null;
         try {
             pst = connection.prepareStatement(sql);
             pst.setInt(1,appointment.getPatientId());
             pst.setInt(2,appointment.getDoctorId());
-            pst.setTimestamp(3, ts,utc);
-            pst.setDate(4,new Date(appointment.getAppointmentDate().getTime()));
-            pst.setString(5, appointment.getSummary());
+            //System.out.println("I GET HERE");
+            pst.setTimestamp(5, ts,utc);
+            //System.out.println("DO I GET HERE?");
+            pst.setTimestamp(3, ts2,utc);
+            //System.out.println("here?");
+            pst.setString(4, appointment.getSummary());
+            //System.out.println("BRUV?");
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+        System.out.println("buna");
         db.operation(pst);
+        System.out.println("here");
         System.out.println("ADDED appointment");
     }
     public void deleteAppointment(Appointment appointment){
-        String sql = "DELETE FROM APPOINTMENTS WHERE patient_id=? AND doctor_id=? AND appointment_time=? AND appointment_date=?";
+        Timestamp ts = new Timestamp(appointment.getStartTime().toInstant(ZoneOffset.UTC).toEpochMilli());
+        Timestamp ts2 = new Timestamp(appointment.getEndTime().toInstant(ZoneOffset.UTC).toEpochMilli());
+
+        String sql = "DELETE FROM APPOINTMENTS WHERE patient_id=? AND doctor_id=? AND startTime=? AND endTime=?";
         PreparedStatement pst = null;
         try {
             pst = connection.prepareStatement(sql);
             pst.setInt(1,appointment.getPatientId());
             pst.setInt(2,appointment.getDoctorId());
-            pst.setDate(3,new Date(appointment.getAppointmentTime().getTime()) );
-            pst.setDate(4,new Date(appointment.getAppointmentDate().getTime()) );
+            pst.setTimestamp(3,ts,utc);
+            pst.setTimestamp(4,ts2,utc);
 
         } catch (SQLException e) {
             e.printStackTrace();
