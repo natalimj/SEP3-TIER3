@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public class Appointment implements Serializable {
+    private int appointmentId;
     private int patientId;
     private int doctorId;
     private LocalDateTime startTime;
@@ -14,12 +15,30 @@ public class Appointment implements Serializable {
     public Appointment() {
     }
 
+
+    public Appointment(int appointmentId, int patientId, int doctorId, LocalDateTime startTime, LocalDateTime endTime, String summary) {
+        this.appointmentId = appointmentId;
+        this.patientId = patientId;
+        this.doctorId = doctorId;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.summary = summary;
+    }
+
     public Appointment(int patientId, int doctorId, LocalDateTime startTime, LocalDateTime endTime, String summary) {
         this.patientId = patientId;
         this.doctorId = doctorId;
         this.startTime = startTime;
         this.endTime = endTime;
         this.summary = summary;
+    }
+
+    public int getAppointmentId() {
+        return appointmentId;
+    }
+
+    public void setAppointmentId(int appointmentId) {
+        this.appointmentId = appointmentId;
     }
 
     public int getPatientId() {
