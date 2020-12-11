@@ -87,12 +87,11 @@ public class DataHandlerImpl implements DataHandler
        medicalRecordData.editMedicalRecord(medicalRecord);
     }
 
-
     @Override
-    public Rating getRating(int id) {
-
-        return ratingData.getRating(id);
+    public ArrayList<Rating> getRating(int userId) {
+        return ratingData.getRating(userId);
     }
+
 
     @Override
     public void addRating(Rating rating) {

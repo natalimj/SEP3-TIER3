@@ -19,8 +19,8 @@ public class SocketDBServer  {
             ServerSocket welcomeSocket = new ServerSocket(2910);
 
             while(true) {
-                Socket socket = welcomeSocket.accept();
-                new Thread(new SocketHandler(socket,dataHandler)).start();
+                Socket connectionSocket = welcomeSocket.accept();
+                new Thread(new SocketHandler(connectionSocket,dataHandler)).start();
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -19,7 +19,7 @@ public class RatingData {
     }
 
 
-    public Rating getRating(int userId){
+    public ArrayList<Rating>  getRating(int userId){
         ArrayList<Rating> ratings = new ArrayList<>();
         Rating rating=null;
 
@@ -36,7 +36,6 @@ public class RatingData {
                         rs.getInt("hospital_id"));
 
                 ratings.add(rating);
-                rating=ratings.get(0);
             }
         }
         catch (Exception e)
@@ -44,7 +43,7 @@ public class RatingData {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        return rating;
+        return ratings;
     }
 
     public void addRating(Rating rating)

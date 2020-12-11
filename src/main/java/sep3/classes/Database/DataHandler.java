@@ -26,7 +26,7 @@ public interface DataHandler {
     public void editMedicalRecord(MedicalRecord medicalRecord);
 
    // public ArrayList<Rating> getAllRatings();
-    public Rating getRating(int id);
+   ArrayList<Rating>  getRating(int userId);
     public void addRating(Rating rating);
   //  public void deleteRating(int id);
     public void editRating(Rating rating);
