@@ -67,7 +67,6 @@ public class MedicalRecordData {
 
     }
 
-
     public void editMedicalRecord(MedicalRecord medicalRecord){
         byte[] existing = null;
         try {
@@ -88,12 +87,12 @@ public class MedicalRecordData {
         String content1 ="";
         if(existing!=null)
             if(existing.length>0){
-            content1=new String(existing);
-        }
+                content1=new String(existing);
+            }
         System.out.println(content1);
         String content2= new String(medicalRecord.getContent());
         System.out.println(content2);
-        String finalCont = content1+"\n---------------"+content2;
+        String finalCont = content1+"\n------------------break-------------------"+content2;
         System.out.println(finalCont);
 
         String sql = "UPDATE MEDICALRECORDS SET content=? WHERE patient_id=?";
