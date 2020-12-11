@@ -1,5 +1,6 @@
 package sep3.classes.Database;
 
+import sep3.classes.Model.Hospital;
 import sep3.classes.Model.Rating;
 
 import java.sql.*;
@@ -18,6 +19,36 @@ public class RatingData {
         connection = db.getConnection();
     }
 
+    public ArrayList<Rating> getAllRatings(){
+        ArrayList<Rating> ratings =new ArrayList<>();
+        try
+        {
+            Statement statement = connection.createStatement();
+            connection.commit();
+
+            ResultSet rs = statement.executeQuery("SELECT * FROM RATES;");
+
+            Rating rating;
+            while (rs.next())
+            {
+
+                rating = new Rating(
+                        rs.getInt("rating"),
+                        rs.getInt("user_id"),
+                        rs.getInt("hospital_id")
+                );
+                ratings.add(rating);
+            }
+
+        }
+        catch (Exception e)
+        {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+
+        return ratings;
+    }
 
     public ArrayList<Rating>  getRating(int userId){
         ArrayList<Rating> ratings = new ArrayList<>();
@@ -62,6 +93,29 @@ public class RatingData {
 
         db.operation(pst);
         System.out.println("ADDED: "+rating.getIdNr());
+
+        try{
+            Statement statement = connection.createStatement();
+            connection.commit();
+            double avgRating = 0;
+            ResultSet rs = statement
+                    .executeQuery("SELECT AVG(rating) AS average FROM RATES WHERE hospital_id='" + rating.getHospitalId() + "'");
+            if(rs.next()){
+                avgRating = rs.getDouble("average");
+            }
+            sql = "UPDATE HOSPITALS SET avg_rating=? WHERE hospital_id=?";
+            PreparedStatement pst2 = null;
+
+            pst2 = connection.prepareStatement(sql);
+            pst2.setDouble(1,avgRating);
+            pst2.setInt(2,rating.getHospitalId());
+
+            db.operation(pst2);
+
+        }catch (Exception e){
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
     }
 
     public void editRating(Rating rating){
@@ -80,6 +134,29 @@ public class RatingData {
 
         db.operation(pst);
         System.out.println("EDITED: rating");
+
+        try{
+            Statement statement = connection.createStatement();
+            connection.commit();
+            double avgRating = 0;
+            ResultSet rs = statement
+                    .executeQuery("SELECT AVG(rating) AS average FROM RATES WHERE hospital_id='" + rating.getHospitalId() + "'");
+            if(rs.next()){
+                avgRating = rs.getDouble("average");
+            }
+            sql = "UPDATE HOSPITALS SET avg_rating=? WHERE hospital_id=?";
+            PreparedStatement pst2 = null;
+
+            pst2 = connection.prepareStatement(sql);
+            pst2.setDouble(1,avgRating);
+            pst2.setInt(2,rating.getHospitalId());
+
+            db.operation(pst2);
+
+        }catch (Exception e){
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
     }
 
     public double getAvgRating(int hospitalId){

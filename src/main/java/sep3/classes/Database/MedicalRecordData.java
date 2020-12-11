@@ -69,12 +69,39 @@ public class MedicalRecordData {
 
 
     public void editMedicalRecord(MedicalRecord medicalRecord){
+        byte[] existing = null;
+        try {
+            Statement statement = connection.createStatement();
+            connection.commit();
+            ResultSet rs = statement
+                    .executeQuery("SELECT content FROM MEDICALRECORDS WHERE patient_id='" + medicalRecord.getPatientId() + "'");
+
+            while (rs.next()) {
+                existing = rs.getBytes("content");
+            }
+        }catch (Exception e){
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+
+        //byte[] c = new byte[existing.length+medicalRecord.getContent().length];
+        String content1 ="";
+        if(existing!=null)
+            if(existing.length>0){
+            content1=new String(existing);
+        }
+        System.out.println(content1);
+        String content2= new String(medicalRecord.getContent());
+        System.out.println(content2);
+        String finalCont = content1+"\n---------------"+content2;
+        System.out.println(finalCont);
+
         String sql = "UPDATE MEDICALRECORDS SET content=? WHERE patient_id=?";
 
         PreparedStatement pst = null;
         try {
             pst = connection.prepareStatement(sql);
-            pst.setBytes(1,medicalRecord.getContent());
+            pst.setBytes(1,finalCont.getBytes());
             pst.setInt(2,medicalRecord.getPatientId());
         } catch (SQLException e) {
             e.printStackTrace();
