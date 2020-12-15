@@ -119,7 +119,7 @@ public class HospitalDoctorData {
 
             int doctorId;
             while (rs.next()) {
-                doctorId = rs.getInt("hospital_id");
+                doctorId = rs.getInt("doctor_id");
 
                 doctorIdList.add(doctorId);
 
